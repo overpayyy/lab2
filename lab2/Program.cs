@@ -24,6 +24,12 @@ app.MapGet("/books/search", (string author = "Anonim", int year = 2000, double m
 
 app.MapGet("/books", () => books);
 
+app.MapPost("/books", (Book book) =>
+{
+    books.Add(book);
+    return Results.Ok();
+});
+
 app.Run();
 
 public record Book(string Title, string Author, int Year, double Rating, string Genre);
