@@ -1,15 +1,10 @@
-namespace lab2
-{
-    public class Program
-    {
-        public static void Main(string[] args)
-        {
-            var builder = WebApplication.CreateBuilder(args);
-            var app = builder.Build();
+var builder = WebApplication.CreateBuilder(args);
+var app = builder.Build();
 
-            app.MapGet("/", () => "Hello World!");
+app.MapGet("/", () => "Hello World!");
 
-            app.Run();
-        }
-    }
-}
+app.MapGet("/hello/{name}", (string name) => $"Hello {name}");
+
+app.MapGet("/hello/{name}/{age}", (string name, int age) => $"Hello {name}, you're {age} years old");
+
+app.Run();
